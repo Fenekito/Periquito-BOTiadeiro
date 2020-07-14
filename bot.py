@@ -189,7 +189,7 @@ async def join(ctx):
         voice = await channel.connect()
     await ctx.send(f"entrou em {channel}")
 
-client.run('NzEwNTc4ODE5NDgzODI4MjU0.Xr2mZw.CtVt29z47t3SS4j7vYtfA2cIu74')
+client.run('BOT-KEY')
 
 @client.command()
 @commands.command(name = 'kick')
