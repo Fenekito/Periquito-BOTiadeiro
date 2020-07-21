@@ -164,7 +164,6 @@ async def vidente(ctx,*,pergunta):
                  'wiu wiu',
                  'sei la',
                  'puts',
-                 'nazista',
                  'primeiro',
                  'socorro',
                  'o meu deus',
