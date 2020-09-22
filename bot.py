@@ -1,51 +1,31 @@
-import discord
-import youtube_dl
-import os
-from discord.utils import get
 import random
+
 from discord.ext import commands
 
-client = commands.Bot(command_prefix= 'p_')
+client = commands.Bot(command_prefix='p_')
 
 players = {}
+
 
 @client.event
 async def on_ready():
     print("Boiadeiro is ready")
 
+
 @client.event
 async def on_member_join(member):
-        print(f"{member} se juntou a baderna.")
+    print(f"{member} se juntou a baderna.")
+
 
 @client.event
 async def on_member_remove(member):
     print(f"{member} saiu da baderna.")
 
-@client.command()
-async def lexo(ctx):
-    await ctx.send('you lexo!')
 
-@client.command()
-async def eae(ctx):
-    await ctx.send("eae bro")
-
-#async def play(ctx):
-    #channel = ctx.message.author.voice.channel
-    #await channel.connect()
-    #guild = ctx.message.guild
-    #voice_client = guild.voice_client
-    #player = await voice_client.create_ytdl_player(url)
-    #players[guild.id] = player
-    #player.start()
-
-@client.command()
-async def stop(ctx):
-    guild = ctx.message.guild
-    voice_client = ctx.guild.voice_client
-    await voice_client.disconnect()
 @client.command()
 async def mongoloide(ctx):
     await ctx.send(" foi banido para sempre da twitch!")
+
 
 @client.command()
 async def fraserandom(ctx):
@@ -105,8 +85,9 @@ async def fraserandom(ctx):
            ]
     await ctx.send(f'{random.choice(inicio)} {random.choice(meio)} {random.choice(fim)}')
 
+
 @client.command()
-async def vidente(ctx,*,pergunta):
+async def vidente(ctx, *, pergunta):
     respostas = ['certamente que sim.',
                  'provavelmente sim',
                  'talvez',
@@ -139,7 +120,7 @@ async def vidente(ctx,*,pergunta):
                  'passando no enem',
                  'sua bunda',
                  'minha bunda',
-                 'serpernte',
+                 'serpente',
                  'a bunda do fene',
                  'trabalho escravo',
                  'superando a fome',
@@ -171,27 +152,10 @@ async def vidente(ctx,*,pergunta):
                  ]
     await ctx.send(f'Pergunta: {pergunta}\nResposta: {random.choice(respostas)}')
 
-@client.command()
-async def clear(ctx,amount = 5):
+
+@client.command(name = 'clear', pass_context = True)
+async def clear(ctx, amount=5):
     await ctx.channel.purge(limit=amount)
-    await ctx.send("limpado")
-
-@client.command(pass_context=True)
-
-async def join(ctx):
-    global voice
-    channel = ctx.message.author.voice.channel
-    voice = get(client.voice_clients, guild=ctx.guild)
-    if voice and voice.is_connected():
-        await voice.move_to(channel)
-    else:
-        voice = await channel.connect()
-    await ctx.send(f"entrou em {channel}")
+    await ctx.send(f'limpado!')
 
 client.run('BOT-KEY')
-
-@client.command()
-@commands.command(name = 'kick')
-@commands.has_permissions(kick_members = True)
-async def kick(ctx, member : discord.Member, *, reason=None):
-    await member.kick(reason=reason)
