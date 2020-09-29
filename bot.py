@@ -1,10 +1,12 @@
 import random
 
+import discord
 from discord.ext import commands
+from discord.ext.commands import has_permissions, MissingPermissions
 
 client = commands.Bot(command_prefix='p_')
 
-players = {}
+queues = {}
 
 
 @client.event
@@ -14,17 +16,12 @@ async def on_ready():
 
 @client.event
 async def on_member_join(member):
-    print(f"{member} se juntou a baderna.")
+    print(f"{member} se juntou a um server.")
 
 
 @client.event
 async def on_member_remove(member):
-    print(f"{member} saiu da baderna.")
-
-
-@client.command()
-async def mongoloide(ctx):
-    await ctx.send(" foi banido para sempre da twitch!")
+    print(f"{member} saiu de um server.")
 
 
 @client.command()
@@ -118,10 +115,7 @@ async def vidente(ctx, *, pergunta):
                  'erro 404 erro não localizado',
                  'usando coisas ilicitas',
                  'passando no enem',
-                 'sua bunda',
-                 'minha bunda',
                  'serpente',
-                 'a bunda do fene',
                  'trabalho escravo',
                  'superando a fome',
                  'ultrapassando limites',
@@ -148,14 +142,35 @@ async def vidente(ctx, *, pergunta):
                  'primeiro',
                  'socorro',
                  'o meu deus',
-                 'seu idiota'
+                 'seu idiota',
+                 'pode ter certeza',
+                 'aprovado'
                  ]
     await ctx.send(f'Pergunta: {pergunta}\nResposta: {random.choice(respostas)}')
 
 
-@client.command(name = 'clear', pass_context = True)
+@client.command(name='clear', pass_context=True)
+@has_permissions(administrator=True)
 async def clear(ctx, amount=5):
     await ctx.channel.purge(limit=amount)
     await ctx.send(f'limpado!')
 
-client.run('BOT-KEY')
+
+@clear.error
+async def clear_error(error, ctx):
+    if isinstance(error, MissingPermissions):
+        await ctx.send(f'"desculpe,você não possui permissão"')
+
+
+@client.command()
+@has_permissions(kick_members=True)
+async def kick(ctx, member: discord.Member, *, reason=None):
+    await member.kick()
+
+@kick.error
+async def kick_error(error, ctx):
+    if isinstance(error, MissingPermissions):
+        await ctx.send("você não possui permissão!")
+
+
+client.run('NzEwNTc4ODE5NDgzODI4MjU0.Xr2gGA.-HIzvU8tuF-EQlkbjYE-wUZP85w')
