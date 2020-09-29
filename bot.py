@@ -173,4 +173,4 @@ async def kick_error(error, ctx):
         await ctx.send("você não possui permissão!")
 
 
-client.run('NzEwNTc4ODE5NDgzODI4MjU0.Xr2gGA.-HIzvU8tuF-EQlkbjYE-wUZP85w')
+client.run('BOT-KEY')
