@@ -1,6 +1,7 @@
 import random
 
 import discord
+import os
 from discord.ext import commands
 from discord.ext.commands import has_permissions, MissingPermissions
 
@@ -173,5 +174,8 @@ async def kick_error(error, ctx):
     if isinstance(error, MissingPermissions):
         await ctx.send("você não possui permissão!")
 
+for filename in os.listdir('./cogs'):
+    if filename.endswith('.py'):
+        client.load_extension(f'cogs.{filename[:-3]}')
 
 client.run('BOT-KEY')
