@@ -60,7 +60,9 @@ async def fraserandom(ctx):
             'fracassas',
             'sucedes',
             'espera por',
-            'fica para trás por'
+            'fica para trás por',
+            'atacar',
+            'defendes'
             ]
     fim = ['lemme smash',
            'dogoso',
@@ -78,7 +80,9 @@ async def fraserandom(ctx):
            'derrota o PT',
            'escapa do Brasil',
            'põe um fim a escravidão',
-           'vira um wacky wocker'
+           'vira um wacky wocker',
+           'vai contra todos',
+           'faz 7 a 1'
            ]
     await ctx.send(f'{random.choice(inicio)} {random.choice(meio)} {random.choice(fim)}')
 
@@ -90,8 +94,6 @@ async def vidente(ctx, *, pergunta):
                  'talvez',
                  'pode ter certeza',
                  'nice',
-                 'gay',
-                 'hetero',
                  'porque você quer que um bot autoconsciente responda isso?',
                  'suas definições de vírus foram atualizadas',
                  'oh no',
@@ -105,7 +107,6 @@ async def vidente(ctx, *, pergunta):
                  'vou te quebrar por isso',
                  'yup',
                  'sorvete',
-                 'arco-iris gay',
                  'chovendo',
                  'nem que tu morra',
                  'bolado msm',
@@ -173,4 +174,4 @@ async def kick_error(error, ctx):
         await ctx.send("você não possui permissão!")
 
 
-client.run('NzEwNTc4ODE5NDgzODI4MjU0.Xr2gGA.-HIzvU8tuF-EQlkbjYE-wUZP85w')
+client.run('BOT-KEY')
